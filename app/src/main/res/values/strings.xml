@@ -12,6 +12,8 @@
     <string name="main_increment_button_text">+</string>
     <string name="main_decrement_button_text">-</string>
     <string name="main_toast_less_then_0">A value less then 0 is not allowed</string>
+    <string name="main_toast_quantity">Quantity:\u0020</string>
+    <string name="main_toast_total">Total:\u0020</string>
     <string name="main_toast_order">Thank you for your order!</string>
 
 </resources>

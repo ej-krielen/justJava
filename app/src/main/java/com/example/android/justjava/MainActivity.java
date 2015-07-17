@@ -67,7 +67,12 @@ public class MainActivity extends ActionBarActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        Toast.makeText(getApplicationContext(), getString(R.string.main_toast_order), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),
+                getString(R.string.main_toast_quantity) + quantity + "\n" +
+                        getString(R.string.main_toast_total) + calculatePrice() + "\n" +
+                        getString(R.string.main_toast_order),
+                Toast.LENGTH_SHORT)
+                .show();
     }
 
     /**
