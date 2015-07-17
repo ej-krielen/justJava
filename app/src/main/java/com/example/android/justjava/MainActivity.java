@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
     /**
      * Calculates the price of the order based on the current quantity.
      *
-     * @return the price
+     * @return total price
      */
     private int calculatePrice() {
         return quantity * unitPrice;
