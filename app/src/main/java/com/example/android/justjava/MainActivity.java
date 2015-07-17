@@ -14,6 +14,7 @@ import java.text.NumberFormat;
 public class MainActivity extends ActionBarActivity {
 
     private int quantity = 1;
+    private int unitPrice = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,8 @@ public class MainActivity extends ActionBarActivity {
      * This method displays the given price on the screen.
      */
     private void displayPrice() {
-
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(calculatePrice(quantity)));
+        priceTextView.setText(NumberFormat.getCurrencyInstance().format(calculatePrice()));
     }
 
     /**
@@ -75,8 +75,7 @@ public class MainActivity extends ActionBarActivity {
      *
      * @return the price
      */
-    private int calculatePrice(int quantity) {
-        int price = quantity * 5;
-        return price;
+    private int calculatePrice() {
+        return quantity * unitPrice;
     }
 }
