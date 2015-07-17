@@ -19,7 +19,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        display(1);
+        displayQuantity(1);
     }
 
     /**
@@ -27,7 +27,7 @@ public class MainActivity extends ActionBarActivity {
      */
     public void increment(View view) {
         quantity++;
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     /**
@@ -36,18 +36,18 @@ public class MainActivity extends ActionBarActivity {
     public void decrement(View view) {
         quantity--;
         //quantity is not allowed to be less then zero
-        if (quantity < 0){
+        if (quantity < 0) {
             quantity = 0;
             //show a message that it is not allowed to go below 0
             Toast.makeText(getApplicationContext(), getString(R.string.main_toast_less_then_0), Toast.LENGTH_SHORT).show();
         }
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(
                 R.id.quantity_text_view);
         quantityTextView.setText("" + number);
@@ -58,9 +58,9 @@ public class MainActivity extends ActionBarActivity {
      * This method displays the given price on the screen.
      */
     private void displayPrice() {
-        int unitPrice = 3;
+
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(quantity * unitPrice));
+        priceTextView.setText(NumberFormat.getCurrencyInstance().format(calculatePrice(quantity)));
     }
 
     /**
@@ -68,5 +68,15 @@ public class MainActivity extends ActionBarActivity {
      */
     public void submitOrder(View view) {
         Toast.makeText(getApplicationContext(), getString(R.string.main_toast_order), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Calculates the price of the order based on the current quantity.
+     *
+     * @return the price
+     */
+    private int calculatePrice(int quantity) {
+        int price = quantity * 5;
+        return price;
     }
 }
