@@ -6,6 +6,8 @@
     <string name="action_settings">Settings</string>
 
     <!--MainActivity-->
+    <string name="main_topping_label">Toppings</string>
+    <string name="main_topping_whipped_cream">Whipped cream</string>
     <string name="main_quantity_label">Quantity</string>
     <string name="main_price_label">Price</string>
     <string name="main_order_button_text">Order</string>
