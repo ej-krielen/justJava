@@ -8,6 +8,7 @@
     <!--MainActivity-->
     <string name="main_topping_label">Toppings</string>
     <string name="main_topping_whipped_cream">Whipped cream</string>
+    <string name="main_topping_chocolate">Chocolate</string>
     <string name="main_quantity_label">Quantity</string>
     <string name="main_price_label">Price</string>
     <string name="main_order_button_text">Order</string>
@@ -16,6 +17,7 @@
     <string name="main_toast_less_then_0">A value less then 0 is not allowed</string>
     <string name="main_toast_quantity">Quantity:\u0020</string>
     <string name="main_toast_whipped_cream">Add whipped cream?\u0020</string>
+    <string name="main_toast_chocalote">Add chocalte?\u0020</string>
     <string name="main_toast_total">Total:\u0020</string>
     <string name="main_toast_order">Thank you for your order!</string>
 

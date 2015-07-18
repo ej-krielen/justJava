@@ -70,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        orderSummary(whippedCream());
+        orderSummary(checkForWhippedCream(), checkForChocolate());
     }
 
     /**
@@ -87,26 +87,47 @@ public class MainActivity extends ActionBarActivity {
      *
      * @return boolean yes/no
      */
-    private boolean whippedCream() {
+    private boolean checkForWhippedCream() {
         CheckBox whippedCreamBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
         return whippedCreamBox.isChecked();
     }
 
     /**
+     * Checks if the user wants checkForChocolate
+     *
+     * @return boolean yes/no
+     */
+    private boolean checkForChocolate() {
+        CheckBox chocolateBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        return chocolateBox.isChecked();
+    }
+
+    /**
      * Creates a toast with the summary of the order
      *
+     * @param hasChocolate boolean whether the user wants checkForChocolate or not
      * @param hasWhippedCream boolean whether the user wants whipped cream or not
      */
-    private void orderSummary(boolean hasWhippedCream) {
+    private void orderSummary(boolean hasWhippedCream, boolean hasChocolate) {
+
         String toastWhippedCream = getString(R.string.main_toast_whipped_cream);
         if (hasWhippedCream){
             toastWhippedCream += "yes";
         } else {
             toastWhippedCream += "no";
         }
+
+        String toastChocolate = getString(R.string.main_toast_chocalote);
+        if (hasChocolate){
+            toastChocolate += "yes";
+        } else {
+            toastChocolate += "no";
+        }
+
         Toast.makeText(getApplicationContext(),
                 getString(R.string.main_toast_quantity) + quantity + "\n" +
                         toastWhippedCream + "\n" +
+                        toastChocolate + "\n" +
                         getString(R.string.main_toast_total) + NumberFormat.getCurrencyInstance().format(calculatePrice()) + "\n" +
                         getString(R.string.main_toast_order),
                 Toast.LENGTH_LONG)
