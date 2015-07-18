@@ -3,6 +3,7 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +13,8 @@ import java.text.NumberFormat;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends ActionBarActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private int quantity = 1;
     private int unitPrice = 3;
@@ -40,7 +43,8 @@ public class MainActivity extends ActionBarActivity {
         if (quantity < 0) {
             quantity = 0;
             //show a message that it is not allowed to go below 0
-            Toast.makeText(getApplicationContext(), getString(R.string.main_toast_less_then_0), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.main_toast_less_then_0),
+                    Toast.LENGTH_SHORT).show();
         }
         displayQuantity(quantity);
     }
@@ -49,8 +53,7 @@ public class MainActivity extends ActionBarActivity {
      * This method displays the given quantity value on the screen.
      */
     private void displayQuantity(int number) {
-        TextView quantityTextView = (TextView) findViewById(
-                R.id.quantity_text_view);
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
         displayPrice();
     }
@@ -67,12 +70,7 @@ public class MainActivity extends ActionBarActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        Toast.makeText(getApplicationContext(),
-                getString(R.string.main_toast_quantity) + quantity + "\n" +
-                        getString(R.string.main_toast_total) + calculatePrice() + "\n" +
-                        getString(R.string.main_toast_order),
-                Toast.LENGTH_SHORT)
-                .show();
+        orderSummary(whippedCream());
     }
 
     /**
@@ -82,5 +80,36 @@ public class MainActivity extends ActionBarActivity {
      */
     private int calculatePrice() {
         return quantity * unitPrice;
+    }
+
+    /**
+     * Checks if the user wants whipped cream
+     *
+     * @return boolean yes/no
+     */
+    private boolean whippedCream() {
+        CheckBox whippedCreamBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        return whippedCreamBox.isChecked();
+    }
+
+    /**
+     * Creates a toast with the summary of the order
+     *
+     * @param hasWhippedCream boolean whether the user wants whipped cream or not
+     */
+    private void orderSummary(boolean hasWhippedCream) {
+        String toastWhippedCream = getString(R.string.main_toast_whipped_cream);
+        if (hasWhippedCream){
+            toastWhippedCream += "yes";
+        } else {
+            toastWhippedCream += "no";
+        }
+        Toast.makeText(getApplicationContext(),
+                getString(R.string.main_toast_quantity) + quantity + "\n" +
+                        toastWhippedCream + "\n" +
+                        getString(R.string.main_toast_total) + NumberFormat.getCurrencyInstance().format(calculatePrice()) + "\n" +
+                        getString(R.string.main_toast_order),
+                Toast.LENGTH_LONG)
+                .show();
     }
 }
